@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.master');
 });
+
+Route::get('/applicant_login','ApplicantController@login');
+Route::get('/company_login','CompanyProfileController@login');
+Route::get('/candidate_profile','ApplicantController@show');
+Route::get('/create_job','JobDetailController@index');
+Route::get('/manage_candidate','CompanyProfileController@manage_candidate');
+

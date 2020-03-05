@@ -12,6 +12,10 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function login()
+    {
+        return view('auth.applicant_signup');
+    }
     public function index()
     {
         //
@@ -46,7 +50,7 @@ class ApplicantController extends Controller
      */
     public function show(Applicant $applicant)
     {
-        //
+        return view('candidate_profile');
     }
 
     /**
