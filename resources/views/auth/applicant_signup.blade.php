@@ -23,37 +23,49 @@
                             <h4>Create An Account</h4>
                         </div>
 
-                        <form class="billing-form">
+                        <form class="billing-form" action="{{url('/register_applicant')}}" method="post">
+                           {{csrf_field()}}
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    @if(Session::has('fail'))
+                                        <p class="alert alert-info">{{ Session::get('fail') }}</p>
+
+                                        @else
+                                        <p class="alert alert-info">{{ Session::get('success') }}</p>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>First Name</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" name="first_name" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Last Name</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" name="last_name" class="form-control" />
                                 </div>
 
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" />
+                                    <input type="email" name="email" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" />
+                                    <input type="password" name="password" class="form-control" />
                                 </div>
 
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
 										<span class="custom-checkbox">
-											<input type="checkbox" id="1">
+											<input type="checkbox" name="check" id="1">
 											<label for="1"></label>
 										</span> I give my consent to Job Stock to collect my data with GDPR regulation.</a>
                                 </div>
@@ -76,18 +88,26 @@
                         <div class="sidebar-box-header bb-1">
                             <h4>LogIn Your Account</h4>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @if(Session::has('login_fail'))
+                                    <p class="alert alert-info">{{ Session::get('login_fail') }}</p>
+                                @endif
+                            </div>
+                        </div>
 
-                        <form class="billing-form">
+                        <form class="billing-form" action="{{url('/login_applicant')}}" method="post">
+                            {{csrf_field()}}
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Username / Email</label>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" name="email" class="form-control" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" />
+                                    <input type="password" name="password" class="form-control" />
                                 </div>
                             </div>
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Applicant;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
 class ApplicantController extends Controller
 {
     /**
@@ -12,76 +14,71 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login()
+
+    public function index()
     {
         return view('auth.applicant_signup');
     }
-    public function index()
+
+
+    public function register(Request $request)
     {
-        //
+        $exist = Applicant::where('email', $request->email)->first();
+        if($exist){
+            Session::flash('fail',"Sorry Mail already Exist");
+            return redirect()->back();
+        }
+        $applicant = new Applicant();
+        $applicant->first_name = $request->first_name;
+        $applicant->last_name = $request->last_name;
+        $applicant->email = $request->email;
+        $applicant->password = $request->password;
+        $applicant->save();
+
+        Session::flash('success',"Registration Successfull");
+        return redirect()->back();
+    }
+    public function login(Request $request)
+    {
+        $applicant = Applicant::where('email',$request->email)
+            ->where('password',$request->password)->first();
+
+        if ($applicant) {
+            Auth::login($applicant, true);
+            Session::put('applicant_id',$applicant->id);
+            return redirect('/');
+        }
+        else
+        {
+            Session::flash('login_fail',"Sorry ! email and password is not matching");
+           return redirect()->back();
+        }
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Applicant $applicant)
     {
         return view('candidate_profile');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Applicant $applicant)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Applicant $applicant)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Applicant  $applicant
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Applicant $applicant)
     {
         //
