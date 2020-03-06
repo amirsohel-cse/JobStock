@@ -18,12 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('/applicant_login','ApplicantController@index');
-Route::get('/company_login','CompanyProfileController@login');
+Route::get('/company_login','CompanyProfileController@index');
 Route::get('/candidate_profile','ApplicantController@show');
 Route::get('/create_job','JobDetailController@index');
 Route::get('/manage_candidate','CompanyProfileController@manage_candidate');
 
+//Register and login Routes are here
 Route::post('/register_applicant','ApplicantController@register');
 Route::post('/login_applicant','ApplicantController@login');
+Route::post('/register_company','CompanyProfileController@register');
+Route::post('/login_company','CompanyProfileController@login');
 
+Route::get('/logout','ApplicantController@logout');
 
+Route::post('/update_applicant','ApplicantController@update');
+Route::post('/create','JobDetailController@create');

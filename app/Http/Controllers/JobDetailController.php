@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\JobDetail;
 use Illuminate\Http\Request;
-
+use Session;
 class JobDetailController extends Controller
 {
     /**
@@ -22,9 +22,21 @@ class JobDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $job = new JobDetail();
 
+        $job->company_id = Session::get('company_id');
+        $job->job_title = $request->title;
+        $job->salary = $request->salary;
+        $job->job_description = $request->description;
+        $job->location = $request->location;
+        $job->country = $request->country;
+
+        $job->save();
+
+        Session::flash('job',"Job created Successfully");
+        return redirect()->back();
     }
 
     /**
@@ -33,7 +45,7 @@ class JobDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }

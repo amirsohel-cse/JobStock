@@ -15,22 +15,15 @@
         <div class="container white-shadow">
 
             <div class="row">
-                <div class="detail-pic"><img src="assets/img/can-1.png" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
+                <div class="detail-pic"><img src="{{$applicant->profile_image}}" class="img" alt="" /><a href="#" class="detail-edit" title="edit"><i class="fa fa-pencil"></i></a></div>
                 <div class="detail-status"><span>Active Now</span></div>
             </div>
 
-            <div class="row bottom-mrg">
-                <div class="col-md-12 col-sm-12">
-                    <div class="advance-detail detail-desc-caption">
-                        <h4>Daniel Declizer</h4><span class="designation">Web Designer</span>
-                        <ul>
-                            <li><strong class="j-view">85</strong>New Post</li>
-                            <li><strong class="j-applied">110</strong>Job Applied</li>
-                            <li><strong class="j-shared">120</strong>Invitation</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+
+
+
+
 
             <div class="row no-padd">
                 <div class="detail pannel-footer">
@@ -43,15 +36,19 @@
                             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         </ul>
                     </div>
-                    <div class="col-md-7 col-sm-7">
-                        <div class="detail-pannel-footer-btn pull-right"><a href="javascript:void(0)" data-toggle="modal" data-target="#apply-job" class="footer-btn grn-btn" title="">Edit Now</a><a href="#" class="footer-btn blu-btn" title="">Save Draft</a></div>
-                    </div>
+                    <a class="btn btn-secondary" href="{{$applicant->resume}}">Download Resume</a>
                 </div>
             </div>
 
         </div>
     </section>
-
+    <div class="row">
+        <div class="col-xs-12">
+            @if(Session::has('update'))
+                <p class="alert alert-info">{{ Session::get('update') }}</p>
+            @endif
+        </div>
+    </div>
     <section class="full-detail-description full-detail gray-bg">
         <div class="container">
             <div class="col-md-12 col-sm-12">
@@ -66,94 +63,52 @@
                         <div class="tab-content">
                             <!-- Start Settings -->
                             <div id="settings" class="tab-pane fade">
+
                                 <div class="row no-mrg">
                                     <h3>Edit Profile</h3>
                                     <div class="edit-pro">
+                                        <form action="{{url('/update_applicant')}}" method="post" enctype="multipart/form-data">
+                                          {{csrf_field()}}
+
                                         <div class="col-md-4 col-sm-6">
                                             <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Matthew">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Middle Name</label>
-                                            <input type="text" class="form-control" placeholder="Else">
+                                            <input type="text" class="form-control" name="first_name" value="{{$applicant->first_name}}" >
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Dana">
+                                            <input type="text" class="form-control" name="last_name" value="{{$applicant->last_name}}">
                                         </div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Email</label>
-                                            <input type="email" class="form-control" placeholder="dana.mathew@gmail.com">
+                                            <input type="email" class="form-control" name="email" value="{{$applicant->email}}">
                                         </div>
                                         <div class="col-md-4 col-sm-6">
-                                            <label>Phone</label>
-                                            <input type="text" class="form-control" placeholder="+91 258 475 6859">
+                                            <label>Skills</label>
+                                            <textarea class="form-control" name="skills" value="{{$applicant->skills}}">{{$applicant->skills}}</textarea>
                                         </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Zip / Postal</label>
-                                            <input type="text" class="form-control" placeholder="258 457 528">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="204 Lowes Alley">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Address 2</label>
-                                            <input type="text" class="form-control" placeholder="Software Developer">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Organization</label>
-                                            <input type="text" class="form-control" placeholder="Software Developer">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>City</label>
-                                            <input type="text" class="form-control" placeholder="Chandigarh">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>State</label>
-                                            <input type="text" class="form-control" placeholder="Punjab">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="India">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Old Password</label>
-                                            <input type="password" class="form-control" placeholder="*********">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>New Password</label>
-                                            <input type="password" class="form-control" placeholder="*********">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Old Password</label>
-                                            <input type="password" class="form-control" placeholder="*********">
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>About you</label>
-                                            <textarea class="form-control" placeholder="Write Something"></textarea>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Upload Profile Pic</label>
-                                            <form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-pic">
-                                                <div class="dz-default dz-message">
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                    <span>Drop files here to upload</span>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6">
-                                            <label>Upload Profile Cover</label>
-                                            <form action="http://codeminifier.com/upload-target" class="dropzone dz-clickable profile-cover">
-                                                <div class="dz-default dz-message">
-                                                    <i class="fa fa-cloud-upload"></i>
-                                                    <span>Drop files here to upload</span>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <label>Upload Profile Pic</label>
+
+                                                    <div class="dz-default dz-message">
+                                                        <i class="fa fa-cloud-upload"></i> <input type="file" name="profile_image">
+
+                                                    </div>
+
+                                            </div>
+                                            <div class="col-md-4 col-sm-6">
+                                                <label>Upload Resume</label>
+
+                                                    <div class="dz-default dz-message">
+                                                        <i class="fa fa-cloud-upload"></i><input type="file" name="resume">
+
+                                                    </div>
+
+                                            </div>
+
                                         <div class="col-sm-12">
-                                            <button type="button" class="update-btn">Update Now</button>
+                                            <button type="submit" class="update-btn">Update Now</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

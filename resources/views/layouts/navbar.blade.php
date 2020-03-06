@@ -8,12 +8,19 @@
                     src="{{asset('assets/img/logo-white.png')}}" class="logo logo-scrolled" alt=""></a></div>
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                <li class="left-br"><a href="{{url('/applicant_login')}}"
-                                       class="signin">Applicant Sign In</a></li>
+                @if(Session::has('applicant_id') or Session::has('company_id'))
+                <li class="left-br"><a href="{{url('/logout')}}"
+                                       class="signin">Sign out</a></li>
+                @else
+                    <li class="left-br"><a href="{{url('/applicant_login')}}"
+                                           class="signin">Applicant Sign In</a></li>
+
                 <li class="left-br"><a href="{{url('/company_login')}}"
                                        class="signin">Company Sign In</a></li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+               @if(Session::has('applicant_id'))
                 <li class="dropdown megamenu-fw">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Applicant Dashboard</a>
                     <ul class="dropdown-menu megamenu-content" role="menu">
@@ -34,8 +41,10 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+                   @if(Session::has('company_id'))
                 <li class="dropdown megamenu-fw">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company Dashboard</a>
                     <ul class="dropdown-menu megamenu-content" role="menu">
                         <li>
                             <div class="row">
@@ -55,7 +64,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
 
         </div>

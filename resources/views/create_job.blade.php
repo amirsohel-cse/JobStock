@@ -15,34 +15,35 @@
 
     <!-- General Detail Start -->
     <div class="detail-desc section">
-        <div class="container white-shadow">
 
+        <div class="container white-shadow">
             <div class="row">
-                <div class="detail-pic js">
-                    <div class="box">
-                        <input type="file" name="upload-pic[]" id="upload-pic" class="inputfile" />
-                        <label for="upload-pic"><i class="fa fa-upload" aria-hidden="true"></i><span></span></label>
-                    </div>
+                <div class="col-xs-12">
+                    @if(Session::has('job'))
+                        <p class="alert alert-info">{{ Session::get('job') }}</p>
+                    @endif
                 </div>
             </div>
 
+            <form class="add-feild" action="{{url('/create')}}" method="post">
+                {{csrf_field()}}
             <div class="row bottom-mrg">
-                <form class="add-feild">
+
                     <div class="col-md-6 col-sm-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Job Title">
+                            <input type="text" name="title" class="form-control" placeholder="Job Title">
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Salary">
+                            <input type="text" class="form-control" name="salary" placeholder="Salary">
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6">
                         <div class="input-group">
-                            <select class="form-control input-lg">
+                            <select class="form-control input-lg" name="country">
                                 <option>Choose Country</option>
                                 <option>Banagladesh</option>
                                 <option>India</option>
@@ -54,28 +55,22 @@
 
                     <div class="col-md-6 col-sm-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Location,e.g. London Quel Mark">
+                            <input type="text" name="location" class="form-control" placeholder="Location,e.g. Dhaka , Mirpur">
                         </div>
                     </div>
 
                     <div class="col-md-12 col-sm-12">
-                        <textarea class="form-control" placeholder="Job Description"></textarea>
+                        <textarea class="form-control" name="description" placeholder="Job Description"></textarea>
                     </div>
+                <button type="submit"  class="btn btn-primary center-block">Submit</button>
 
-                </form>
-            </div>
 
-            <div class="row no-padd">
-                <div class="detail pannel-footer">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="detail-pannel-footer-btn pull-right">
-                            <a href="#" class="footer-btn choose-cover">Submit</a>
-                        </div>
-                    </div>
-                </div>
             </div>
+            </form>
+
 
         </div>
+
     </div>
     <!-- General Detail End -->
 
