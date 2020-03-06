@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Applicant;
 use App\CompanyProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,7 @@ class CompanyProfileController extends Controller
     }
 
     public function manage_candidate(){
+       // $applicant = Applicant::findOrFail()
         return view('manage_candidate');
     }
 

@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
+
+Route::get('/','HomeController@index');
 
 Route::get('/applicant_login','ApplicantController@index');
 Route::get('/company_login','CompanyProfileController@index');
