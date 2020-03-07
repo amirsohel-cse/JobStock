@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Applicant;
+use App\AppliedJob;
 use App\CompanyProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,57 +55,10 @@ class CompanyProfileController extends Controller
 
     public function manage_candidate(){
        // $applicant = Applicant::findOrFail()
-        return view('manage_candidate');
+        $applicants = AppliedJob::where('company_id',Session::get('company_id'))
+            ->join('applicants','applicants.id','=','applied_jobs.applicant_id')->get();
+
+        return view('manage_candidate')->with('applicants',$applicants);
     }
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(CompanyProfile $companyProfile)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CompanyProfile  $companyProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CompanyProfile $companyProfile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CompanyProfile  $companyProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CompanyProfile $companyProfile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CompanyProfile  $companyProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CompanyProfile $companyProfile)
-    {
-        //
-    }
 }

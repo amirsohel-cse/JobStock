@@ -32,3 +32,4 @@ Route::get('/logout','ApplicantController@logout');
 
 Route::post('/update_applicant','ApplicantController@update');
 Route::post('/create','JobDetailController@create');
+Route::get('/apply/{id}','HomeController@apply');

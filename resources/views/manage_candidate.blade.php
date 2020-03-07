@@ -53,140 +53,23 @@
         <!-- search filter End -->
 
         <div class="row">
+            @foreach($applicants as $app)
             <div class="col-md-4 col-sm-4">
                 <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
                     <div class="cndt-caption">
                         <div class="cndt-pic">
-                            <img src="assets/img/client-1.jpg" class="img-responsive" alt="" />
+                            <img src="{{$app->profile_image}}" class="img-responsive" alt="" />
                         </div>
-                        <h4>Charles Hopman</h4>
-                        <span>Web designer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
+                        <h4>{{$app->first_name}}</h4>
+                        <span>{{$app->skills}}</span>
+                        <p>{{$app->email}}</p>
                     </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
+                    <a class="btn btn-secondary center-block" href="{{$app->resume}}">Download Resume</a>
                 </div>
             </div>
+          @endforeach
 
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status available">Available</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-2.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Ethan Marion</h4>
-                        <span>IOS designer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
 
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-3.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Zara Clow</h4>
-                        <span>UI/UX designer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-4.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Henry Crooks</h4>
-                        <span>PHP Developer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status available">Available</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-5.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Joseph Macfarlan</h4>
-                        <span>App Developer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-1.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Zane Joyner</h4>
-                        <span>Html Expert</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-2.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Anna Hoysted</h4>
-                        <span>UI/UX Designer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status available">Available</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-3.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Spencer Birdseye</h4>
-                        <span>SEO Expert</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="manage-cndt">
-                    <div class="cndt-status pending">Pending</div>
-                    <div class="cndt-caption">
-                        <div class="cndt-pic">
-                            <img src="assets/img/client-1.jpg" class="img-responsive" alt="" />
-                        </div>
-                        <h4>Eden Macaulay</h4>
-                        <span>Web designer</span>
-                        <p>Our analysis team at Megriosft use end to end innovation proces</p>
-                    </div>
-                    <a href="#" title="" class="cndt-profile-btn">View Profile</a>
-                </div>
-            </div>
         </div>
 
         <div class="row">
