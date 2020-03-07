@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     public function apply($app){
         $this->AuthCheck();
-
+       $this->resumeCheck();
         $exist = JobDetail::findOrFail($app);
 $applied = AppliedJob::where('job_id',$app)->where('applicant_id',Session::get('applicant_id'))->first();
       if($applied)
@@ -53,6 +53,18 @@ $applied = AppliedJob::where('job_id',$app)->where('applicant_id',Session::get('
         }
         else{
             return Redirect::to('/applicant_login')->send();
+        }
+
+    }
+    public function resumeCheck()
+    {
+        $id = Session::get('applicant_id');
+        $app_resume = Applicant::find($id);
+        if($app_resume->resume){
+            return;
+        }
+        else{
+            return Redirect::to('/candidate_profile')->send();
         }
 
     }
