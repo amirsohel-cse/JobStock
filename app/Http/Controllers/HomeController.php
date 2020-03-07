@@ -7,6 +7,8 @@ use App\AppliedJob;
 use App\JobDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Redirect;
 use Session;
 class HomeController extends Controller
 {
@@ -23,6 +25,7 @@ class HomeController extends Controller
     }
 
     public function apply($app){
+        $this->AuthCheck();
 
         $exist = JobDetail::findOrFail($app);
 $applied = AppliedJob::where('job_id',$app)->where('applicant_id',Session::get('applicant_id'))->first();
@@ -41,6 +44,16 @@ $applied = AppliedJob::where('job_id',$app)->where('applicant_id',Session::get('
         $job->save();
         Session::flash('apply',"Applied successfully");
         return redirect()->back();
+
+    }
+    public function AuthCheck()
+    {
+        if(Session::has('applicant_id')){
+            return;
+        }
+        else{
+            return Redirect::to('/applicant_login')->send();
+        }
 
     }
 }
